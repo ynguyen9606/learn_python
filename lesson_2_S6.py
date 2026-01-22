@@ -19,7 +19,8 @@ class Student:
 St1 = Student(1234, "Alex", 18)
 print(St1.name)
 St1.__ShowInfo__()
-St1.set_id(5678)
-print(St1.get_id())# dùng phương thức gián tiếp bằng get
+
+St1.set_id(5678)# dùng phương thức gián tiếp bằng set và get
+print(St1.get_id())
 
 print(St1.__id)# sẽ bị ẩn id(đóng gói id),nếu muốn mở đóng gói này thì thêm __ sau nó
