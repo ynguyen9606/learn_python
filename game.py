@@ -14,7 +14,6 @@ class Direction(Enum):
 
 Point = namedtuple('Point', 'x, y')
 
-# Màu sắc
 WHITE = (255, 255, 255)
 RED = (200, 0, 0)
 GREEN1 = (0, 200, 0)
@@ -53,7 +52,6 @@ class SnakeGame:
             self._place_food()
             
     def play_step(self):
-        # 1. Thu thập input từ người chơi
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -68,24 +66,20 @@ class SnakeGame:
                 elif event.key == pygame.K_DOWN and self.direction != Direction.UP:
                     self.direction = Direction.DOWN
         
-        # 2. Di chuyển
         self._move(self.direction)
         self.snake.insert(0, self.head)
         
-        # 3. Kiểm tra game over
         game_over = False
         if self._is_collision():
             game_over = True
             return game_over, self.score
             
-        # 4. Đặt thức ăn mới hoặc di chuyển
         if self.head == self.food:
             self.score += 1
             self._place_food()
         else:
             self.snake.pop()
         
-        # 5. Cập nhật UI và clock
         self._update_ui()
         self.clock.tick(SPEED)
         
@@ -94,10 +88,8 @@ class SnakeGame:
     def _is_collision(self, pt=None):
         if pt is None:
             pt = self.head
-        # Va chạm với tường
         if pt.x > self.w - BLOCK_SIZE or pt.x < 0 or pt.y > self.h - BLOCK_SIZE or pt.y < 0:
             return True
-        # Va chạm với chính mình
         if pt in self.snake[1:]:
             return True
         return False
@@ -132,7 +124,6 @@ class SnakeGame:
 if __name__ == '__main__':
     game = SnakeGame()
     
-    # Game loop
     while True:
         game_over, score = game.play_step()
         
