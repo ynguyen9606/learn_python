@@ -40,6 +40,12 @@ class Student(Person):
         self.__email = email 
         super().__init__(name, sex, date_birth, address)
 
+    def get_ID(self):
+        return self.__ID
+    
+    def get_average_score(self):
+        return self.__average_score
+
     def inputInfo(self):
         super().inputInfo()
 
@@ -76,7 +82,15 @@ class  StudentTest:
         self.students = []
     
     def inputStudents(self):
-        n = int(input("nhap so sinh vien: "))
+        while True:
+            try:
+                n = int(input("nhap so sinh vien: "))
+                if n > 0:
+                    break
+                print("so sinh vien phai > 0!")
+            except ValueError:
+                print("vui long nhap so nguyen!")
+                
         for i in range(n):
             print(f"\nsinh vien {i+1}")
             stu = Student()
@@ -88,8 +102,8 @@ class  StudentTest:
             stu.showInfo()
     
     def showmax_min(self):
-        max_stu = max(self.students, key=lambda x: x._Student__average_score)
-        min_stu = min(self.students, key=lambda x: x._Student__average_score)
+        max_stu = max(self.students, key=lambda x: x.get_average_score())
+        min_stu = min(self.students, key=lambda x: x.get_average_score())
 
         print("\nsinh vien cao diem nhat")
         max_stu.showInfo()
@@ -100,7 +114,7 @@ class  StudentTest:
     def shearchID(self):
         find = input("nhap ma sinh vien can tim: ")
         for stu in self.students:
-            if stu._Student__ID == find:
+            if stu.get_ID() == find:
                 stu.showInfo()
                 return
         print(f"khong co sinh vien nao co ma la: {find}")
@@ -111,7 +125,7 @@ class  StudentTest:
     
     def showScholarship(self):
         list_stu = [stu for stu in self.students if stu.Check_scholarships()]
-        list_stu.sort(key=lambda x: x._Student__average_score, reverse=True)
+        list_stu.sort(key=lambda x: x.get_average_score(), reverse=True)
 
         for sv in list_stu:
             print("----------------")
