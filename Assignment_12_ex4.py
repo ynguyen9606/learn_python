@@ -114,6 +114,7 @@ class  StudentTest:
         list_stu.sort(key=lambda x: x._Student__average_score, reverse=True)
 
         for sv in list_stu:
+            print("----------------")
             sv.showInfo()
 
     def menu(self):
@@ -187,7 +188,7 @@ class Teacher(Person):
     def Salary(self):
         salary = self.__wage * self.__time_month
 
-        if self.__class_name in ["L", "M"]:
+        if self.__class_name[0] in ["L", "M"]:
             salary += 200000
 
         return salary
