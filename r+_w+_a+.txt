@@ -1,0 +1,5 @@
+r+ : không xóa nội dung cũ ở file, con trỏ ban đầu sẽ ở đầu file, cần có file txtx sẵn
+w+ : xóa nội dung cũ ở file, con trỏ ban đầu sẽ ở đầu file, tự tạo file mới nếu file k có sẵn
+a+ : không xóa nội dung cũ ở file, con trỏ ban đầu sẽ ở cuối file, tự tạo file mới nếu file k có sẵn
+
+* dùng file.seek(...) để đưa con trỏ về vị trí cần đọc file
